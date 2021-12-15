@@ -1,3 +1,6 @@
+import barcode #import Barcode module
+from barcode.writer import ImageWriter
+
 def mainmenu():
     while True: #loops over and over again
         print("1. Generate a barcode")
@@ -27,9 +30,12 @@ def generate(arg=''):
         GTINT=int(G1*3+G2+G3*3+G4+G5*3+G6+G7*3)
         roundup=round(GTINT, -1)
         GTIN8 = int(roundup - GTINT) % 10
+        data = str(GTIN)+str(GTIN8)
         if arg == '':
             print(arg)
-            print("Your full GTIN-8 code is: "+str(GTIN)+str(GTIN8))
+            print("Your full GTIN-8 code is: "+data)
+            print (int(data))
+            getbarcode(data)
         return GTIN8
     else:
         print("Nope")
@@ -41,4 +47,7 @@ def validate():
         print("Your code is valid")
     else:
         print("Your code is invalid")
+def getbarcode (data): # Создать штрих-код
+   img = barcode.get ('ean8', data, writer = ImageWriter ()) # "ean13" может вводить здесь разные правила кодирования
+   img.save(f'{data}')
 mainmenu()
