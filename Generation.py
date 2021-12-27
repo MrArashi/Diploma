@@ -47,7 +47,7 @@ def validate():
         print("Your code is valid")
     else:
         print("Your code is invalid")
-def getbarcode (data): # Создать штрих-код
-   img = barcode.get ('ean8', data, writer = ImageWriter ()) # "ean13" может вводить здесь разные правила кодирования
+def getbarcode (data): # Creation barcode
+   img = barcode.get ('ean8', data, writer = ImageWriter ()) # "ean8" may choose another
    img.save(f'{data}')
 mainmenu()
